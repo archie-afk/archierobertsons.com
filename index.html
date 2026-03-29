@@ -6,7 +6,7 @@
   <title>Archie Robertson</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
       --rust:    #8B3A2F;
@@ -21,8 +21,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; height: 100%; }
 
     body {
       background: var(--bg);
@@ -32,54 +31,157 @@
       font-size: 15px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
-    }
-
-    /* ── LAYOUT ── */
-    .page {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* ── HEADER ── */
-    header {
-      padding: 4rem 0 2.5rem;
-      border-bottom: 1px solid var(--line);
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
-      font-weight: 700;
-      color: var(--charcoal);
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 0.8rem;
-    }
-
-    .name span {
-      color: var(--rust);
-    }
-
-    .contact {
+      min-height: 100vh;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem 1.4rem;
-      color: var(--mgrey);
-      font-size: 0.85rem;
-      font-weight: 400;
-      margin-bottom: 1.4rem;
+      flex-direction: column;
     }
 
-    .contact a {
-      color: var(--mgrey);
+    /* ── HAMBURGER NAV ── */
+    .nav-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: flex-end;
+      padding: 1.2rem 2rem;
+    }
+
+    .hamburger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 6px;
+      z-index: 200;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--charcoal);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--charcoal);
+      z-index: 150;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .nav-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .nav-overlay a {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 3rem);
+      color: var(--bg);
       text-decoration: none;
+      letter-spacing: -0.01em;
+      padding: 0.4rem 0;
+      position: relative;
       transition: color 0.2s;
     }
-    .contact a:hover { color: var(--rust); }
 
-    .download-btn {
+    .nav-overlay a::after {
+      content: '';
+      position: absolute;
+      bottom: 0.2rem; left: 0;
+      width: 0; height: 1px;
+      background: var(--rust);
+      transition: width 0.3s ease;
+    }
+
+    .nav-overlay a:hover { color: var(--rust); }
+    .nav-overlay a:hover::after { width: 100%; }
+
+    .nav-overlay .nav-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mgrey);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 640px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rust);
+      font-weight: 500;
+      margin-bottom: 1.4rem;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 1.8rem;
+      animation: fadeUp 0.5s 0.08s ease both;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--rust);
+      font-weight: 400;
+    }
+
+    .hero-bio {
+      font-size: 1rem;
+      color: var(--mgrey);
+      line-height: 1.8;
+      max-width: 480px;
+      margin: 0 auto 2.4rem;
+      animation: fadeUp 0.5s 0.16s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.5s 0.24s ease both;
+    }
+
+    .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
@@ -88,177 +190,49 @@
       text-decoration: none;
       font-size: 0.82rem;
       font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 0.6rem 1.2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.6rem;
       border-radius: 2px;
       transition: background 0.2s, transform 0.15s;
     }
-    .download-btn:hover {
-      background: var(--rust-lt);
-      transform: translateY(-1px);
-    }
-    .download-btn svg {
-      width: 14px; height: 14px; flex-shrink: 0;
-    }
+    .btn-primary:hover { background: var(--rust-lt); transform: translateY(-1px); }
 
-    /* ── MAIN ── */
-    main {
-      padding: 0 0 5rem;
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      padding-top: 2.4rem;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    section:nth-child(1) { animation-delay: 0.05s; }
-    section:nth-child(2) { animation-delay: 0.10s; }
-    section:nth-child(3) { animation-delay: 0.15s; }
-    section:nth-child(4) { animation-delay: 0.20s; }
-    section:nth-child(5) { animation-delay: 0.25s; }
-
-    .section-label {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--charcoal);
-      margin-bottom: 0.3rem;
-      display: flex;
+    .btn-secondary {
+      display: inline-flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.5rem;
+      background: transparent;
+      color: var(--charcoal);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.6rem;
+      border-radius: 2px;
+      border: 1px solid var(--line);
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
     }
-    .section-label::after {
-      content: '';
-      flex: 1;
+    .btn-secondary:hover { border-color: var(--rust); color: var(--rust); transform: translateY(-1px); }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 40px;
       height: 1px;
       background: var(--rust);
-      opacity: 0.5;
+      opacity: 0.4;
+      margin: 0 auto 1.8rem;
+      animation: fadeUp 0.5s 0.12s ease both;
     }
-
-    /* ── PROFILE bullets ── */
-    .profile-list {
-      list-style: none;
-      padding: 0.5rem 0 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    .profile-list li {
-      padding-left: 1.1rem;
-      position: relative;
-      color: var(--dgrey);
-      font-size: 0.92rem;
-    }
-    .profile-list li::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: var(--rust);
-      font-weight: 500;
-    }
-
-    /* ── ENTRY BLOCKS ── */
-    .entry {
-      padding: 1rem 0 0.2rem;
-      border-bottom: 1px solid var(--line);
-    }
-    .entry:last-child { border-bottom: none; }
-
-    .entry-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .entry-title {
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: var(--charcoal);
-    }
-
-    .entry-date {
-      font-size: 0.8rem;
-      color: var(--lgrey);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .entry-org {
-      font-size: 0.82rem;
-      color: var(--rust);
-      font-style: italic;
-      margin: 0.1rem 0 0.5rem;
-    }
-
-    .entry-list {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      margin-bottom: 0.6rem;
-    }
-    .entry-list li {
-      padding-left: 1.1rem;
-      position: relative;
-      font-size: 0.88rem;
-      color: var(--mgrey);
-      line-height: 1.6;
-    }
-    .entry-list li::before {
-      content: '·';
-      position: absolute;
-      left: 0;
-      color: var(--lgrey);
-      font-weight: 700;
-    }
-
-    /* ── SKILLS TABLE ── */
-    .skills-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 0.6rem;
-    }
-    .skills-table tr { border-bottom: 1px solid var(--line); }
-    .skills-table tr:last-child { border-bottom: none; }
-    .skills-table td {
-      padding: 0.55rem 0;
-      font-size: 0.88rem;
-      vertical-align: top;
-    }
-    .skills-table td:first-child {
-      font-weight: 500;
-      color: var(--charcoal);
-      width: 130px;
-      padding-right: 1.5rem;
-    }
-    .skills-table td:last-child {
-      color: var(--mgrey);
-    }
-
-    /* ── CERTS ── */
-    .cert-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
-      padding: 0.55rem 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 0.88rem;
-    }
-    .cert-row:last-child { border-bottom: none; }
-    .cert-name { color: var(--dgrey); }
-    .cert-year { color: var(--lgrey); font-size: 0.82rem; white-space: nowrap; flex-shrink: 0; }
 
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid var(--line);
-      padding: 1.5rem 0;
+      padding: 1.2rem 2rem;
       font-size: 0.78rem;
       color: var(--lgrey);
+      text-align: center;
     }
 
     /* ── ANIMATION ── */
@@ -267,161 +241,67 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 520px) {
-      .page { padding: 0 1.2rem; }
-      header { padding: 2.5rem 0 1.8rem; }
-      .entry-header { flex-direction: column; gap: 0.1rem; }
-      .entry-date { align-self: flex-start; }
+      .nav-bar { padding: 1rem 1.2rem; }
+      .hero { padding: 5rem 1.2rem 3rem; }
     }
   </style>
 </head>
 <body>
 
-<div class="page">
+  <!-- NAV -->
+  <nav class="nav-bar">
+    <button class="hamburger" id="menuBtn" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-  <header>
-    <h1 class="name">Archie <span>Robertson</span></h1>
-    <div class="contact">
-      <a href="mailto:archie@robertsons.com">archie@robertsons.com</a>
-      <span>07495 791 527</span>
-      <span>Aberdeen, Scotland</span>
+  <div class="nav-overlay" id="navOverlay">
+    <span class="nav-label">Navigate</span>
+    <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="cv.html" onclick="closeMenu()">CV</a>
+    <a href="mailto:archie@robertsons.com" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <main class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Economics · St Andrews · Aberdeen</p>
+      <h1 class="hero-name">Archie <em>Robertson</em></h1>
+      <div class="divider"></div>
+      <p class="hero-bio">
+        Third-year Economics student with a grounding in quantitative methods, programming, and finance. Looking for an internship where I can put analytical skills to real use.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="cv.html">View CV</a>
+        <a class="btn-secondary" href="mailto:archie@robertsons.com">Get in touch</a>
+      </div>
     </div>
-    <a class="download-btn" href="Archie_Robertson_CV.pdf" download>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-        <polyline points="7 10 12 15 17 10"/>
-        <line x1="12" y1="15" x2="12" y2="3"/>
-      </svg>
-      Download CV
-    </a>
-  </header>
-
-  <main>
-
-    <!-- PROFILE -->
-    <section>
-      <h2 class="section-label">Profile</h2>
-      <ul class="profile-list">
-        <li>Third-year Economics student at St. Andrews with a good grounding in economic theory, statistics, and financial mathematics.</li>
-        <li>Pick up technical tools quickly — have used Python, Java, and LaTeX throughout my degree.</li>
-        <li>Four years of youth coaching and hospitality work over summers have driven me to work well in a team and stay orginized when it gets busy.</li>
-        <li>Joining the Breakaway Hillwalking Society committee as Trip Secretary next year.</li>
-      </ul>
-    </section>
-
-    <!-- EDUCATION -->
-    <section>
-      <h2 class="section-label">Education</h2>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">BSc Economics</span>
-          <span class="entry-date">Sep 2022 – Present (Expected Jun 2026)</span>
-        </div>
-        <div class="entry-org">University of St. Andrews, Scotland</div>
-        <ul class="entry-list">
-          <li>Modules include Microeconomics, Macroeconomics, Statistics, and Mathematics for Economics.</li>
-          <li>Also completed modules in Object-Oriented Programming and Unix-Based Systems alongside the core economics curriculum.</li>
-          <li>Joining the Breakaways Hillwalking Society committee as Trip Secretary (2025–26), responsible for planning and organising society trips.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Scottish Highers</span>
-          <span class="entry-date">2021</span>
-        </div>
-        <div class="entry-org">Cults Academy, Aberdeen</div>
-        <ul class="entry-list">
-          <li>Mathematics: A &ensp; Physics: A &ensp; Computing: A &ensp; Physical Education: A &ensp; Chemistry: B</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section>
-      <h2 class="section-label">Work Experience</h2>
-
-            <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Kitchen Porter</span>
-          <span class="entry-date">Summer 2025</span>
-        </div>
-        <div class="entry-org">Parx Café, Aberdeen</div>
-        <ul class="entry-list">
-          <li>Responsible for early morning dishwashing and food preparation, ensuring the kitchen was fully operational ahead of service.</li>
-          <li>Worked in a compact, high-pressure kitchen environment — the café ran at full capacity most days, requiring focus and efficiency throughout each shift.</li>
-          <li>Developed the ability to work quickly and methodically in a confined space, maintaining standards under sustained demand.</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Youth Sports Coach</span>
-          <span class="entry-date">Jun 2020 – Aug 2024</span>
-        </div>
-        <div class="entry-org">Ian Wilson Soccer Coaching (IWSC), Aberdeen</div>
-        <ul class="entry-list">
-          <li>Ran coaching sessions for groups of up to 20 children at different skill levels — planned each session in advance and adapted on the day depending on how things were going.</li>
-          <li>Had to communicate clearly with both the children and their parents and manage a group with very different personalities and abilities.</li>
-          <li>Completed the Caledonia North Rugby Development Youth Coaching Award (2021) and hold a PVG certificate (since 2023).</li>
-        </ul>
-      </div>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Kitchen Porter</span>
-          <span class="entry-date">Jun 2021 – Aug 2024</span>
-        </div>
-        <div class="entry-org">Kippie Lodge, Aberdeen</div>
-        <ul class="entry-list">
-          <li>Worked every summer in a busy kitchen — kept things running smoothly during service, helped with prep, and maintained a clean and organised workspace.</li>
-          <li>Good for staying focused and keeping pace when things get hectic.</li>
-        </ul>
-      </div>
-
-    </section>
-
-    <!-- SKILLS -->
-    <section>
-      <h2 class="section-label">Skills</h2>
-      <table class="skills-table">
-        <tr>
-          <td>Programming</td>
-          <td>Python, Java, LaTeX, Unix / Bash</td>
-        </tr>
-        <tr>
-          <td>Quantitative</td>
-          <td>Statistics, data analysis, financial mathematics</td>
-        </tr>
-        <tr>
-          <td>Interests</td>
-          <td>Economics, hillwalking, golf, computer science</td>
-        </tr>
-      </table>
-    </section>
-
-    <!-- CERTIFICATIONS -->
-    <section>
-      <h2 class="section-label">Certifications</h2>
-      <div class="cert-row">
-        <span class="cert-name">Caledonia North Rugby Development Youth Coaching Award</span>
-        <span class="cert-year">2021</span>
-      </div>
-      <div class="cert-row">
-        <span class="cert-name">PVG (Protecting Vulnerable Groups) Member — #2107 0159 8561 2431</span>
-        <span class="cert-year">2023</span>
-      </div>
-    </section>
-
   </main>
 
   <footer>
-    References available upon request
+    St. Andrews, Scotland &nbsp;·&nbsp; archie@robertsons.com &nbsp;·&nbsp; 07495 791 527
   </footer>
 
-</div>
+  <script>
+    const btn = document.getElementById('menuBtn');
+    const overlay = document.getElementById('navOverlay');
+
+    btn.addEventListener('click', () => {
+      const isOpen = overlay.classList.toggle('open');
+      btn.classList.toggle('open', isOpen);
+    });
+
+    function closeMenu() {
+      overlay.classList.remove('open');
+      btn.classList.remove('open');
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeMenu();
+    });
+  </script>
 
 </body>
 </html>
