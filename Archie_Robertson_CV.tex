@@ -1,0 +1,139 @@
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[a4paper, top=1.1cm, bottom=1.1cm, left=2.0cm, right=2.0cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{setspace}
+
+\definecolor{rust}{HTML}{8B3A2F}
+\definecolor{charcoal}{HTML}{1A1A1A}
+\definecolor{dgrey}{HTML}{2D2D2D}
+\definecolor{mgrey}{HTML}{666666}
+\definecolor{lgrey}{HTML}{AAAAAA}
+
+\hypersetup{colorlinks=false, hidelinks}
+\pagestyle{empty}
+
+\setlength{\parskip}{3pt}
+\setlength{\parindent}{0pt}
+
+\titleformat{\section}
+  {\normalsize\rmfamily\bfseries\color{charcoal}}
+  {}{0em}{}
+  [\vspace{1pt}{\color{rust}\titlerule[0.5pt]}\vspace{2pt}]
+\titlespacing{\section}{0pt}{8pt}{3pt}
+
+\setlist[itemize]{
+  label={\textcolor{mgrey}{\small$\bullet$}},
+  leftmargin=1.1em,
+  itemsep=0pt,
+  topsep=1pt,
+  parsep=0pt,
+  partopsep=0pt
+}
+
+\newcommand{\entry}[3]{%
+  \vspace{3pt}
+  \noindent
+  \textbf{\color{charcoal}#1}\hfill{\color{mgrey}\small #3}\\[-2pt]
+  {\color{rust}\itshape\small #2}
+  \vspace{1pt}
+}
+
+\begin{document}
+
+% NAME
+{\fontsize{26pt}{30pt}\selectfont\rmfamily\bfseries\color{charcoal} Archie Robertson}
+
+\vspace{3pt}
+{\color{lgrey}\hrule height 0.4pt}
+\vspace{2pt}
+{\small\color{mgrey}
+  archie@robertsons.com
+  \quad\textcolor{lgrey}{|}
+  \quad 07495 791 527
+  \quad\textcolor{lgrey}{|}
+  \quad Aberdeen, Scotland
+}
+\vspace{2pt}
+
+% PROFILE
+\section{Profile}
+
+\begin{itemize}
+  \item Third-year Economics student at St.\ Andrews with a good grounding in economic theory, statistics, and financial mathematics.
+  \item Pick up technical tools quickly --- have used Python, Java, and \LaTeX{} throughout my degree.
+  \item Four years of youth coaching and hospitality work over summers have driven me to work well in a team and stay organised when it gets busy.
+  \item Joining the Breakaways Hillwalking Society committee as Trip Secretary next year.
+\end{itemize}
+
+% EDUCATION
+\section{Education}
+
+\entry{BSc Economics}{University of St.\ Andrews, Scotland}{Sep 2022 -- Present (Expected Jun 2027)}
+\begin{itemize}
+  \item Modules include Microeconomics, Macroeconomics, Statistics, and Mathematics for Economics.
+  \item Also completed modules in Object-Oriented Programming and Unix-Based Systems alongside the core economics curriculum.
+  \item Joining the Breakaways Hillwalking Society committee as Trip Secretary (2025--26), responsible for planning and organising society trips.
+\end{itemize}
+
+\entry{Scottish Highers}{Cults Academy, Aberdeen}{2021}
+\begin{itemize}
+  \item Mathematics: A \enspace Physics: A \enspace Computing: A \enspace Physical Education: A \enspace Chemistry: B
+\end{itemize}
+
+% WORK EXPERIENCE
+\section{Work Experience}
+
+\entry{Kitchen Porter}{Parx Caf\'{e}, Aberdeen}{Summer 2025}
+\begin{itemize}
+  \item Responsible for early morning dishwashing and food preparation, ensuring the kitchen was fully operational ahead of service.
+  \item Worked in a compact, high-pressure kitchen environment --- the caf\'{e} ran at full capacity most days, requiring focus and efficiency throughout each shift.
+  \item Developed the ability to work quickly and methodically in a confined space, maintaining standards under sustained demand.
+\end{itemize}
+
+\entry{Youth Sports Coach}{Ian Wilson Soccer Coaching (IWSC), Aberdeen}{Jun 2020 -- Aug 2024}
+\begin{itemize}
+  \item Ran coaching sessions for groups of up to 20 children at different skill levels --- planned each session in advance and adapted on the day depending on how things were going.
+  \item Had to communicate clearly with both the children and their parents and manage a group with very different personalities and abilities.
+\end{itemize}
+
+\entry{Kitchen Porter}{Kippie Lodge, Aberdeen}{Jun 2021 -- Aug 2024}
+\begin{itemize}
+  \item Worked every summer in a busy kitchen --- kept things running smoothly during service, helped with prep, and maintained a clean and organised workspace.
+  \item Good for staying focused and keeping pace when things get hectic.
+\end{itemize}
+
+% SKILLS
+\section{Skills}
+
+\vspace{2pt}
+\begin{tabular}{@{}p{2.8cm} l@{}}
+  \textbf{Programming}  & Python, Java, \LaTeX{}, Unix / Bash \\[3pt]
+  \textbf{Quantitative} & Statistics, data analysis, financial mathematics \\[3pt]
+  \textbf{Interests}    & Economics, hillwalking, golf, computer science \\
+\end{tabular}
+
+% CERTIFICATIONS
+\section{Certifications}
+
+\vspace{2pt}
+\begin{tabularx}{\textwidth}{@{}X r@{}}
+  Caledonia North Rugby Development Youth Coaching Award & {\color{mgrey}2021} \\[3pt]
+  PVG (Protecting Vulnerable Groups) Member --- \#2107 0159 8561 2431 & {\color{mgrey}2023} \\
+\end{tabularx}
+
+\vfill
+
+{\color{lgrey}\hrule height 0.4pt}
+\vspace{2pt}
+{\small\color{lgrey} References available upon request}
+
+\end{document}
