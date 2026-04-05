@@ -214,52 +214,6 @@
       gap: 0.8rem;
     }
 
-    /* ── PHOTO PLACEHOLDER ── */
-    .photo-placeholder {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      background: var(--line);
-      border-radius: 2px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: var(--lgrey);
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border: 1px dashed var(--lgrey);
-      transition: border-color 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .photo-placeholder::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 8px,
-        rgba(170,170,170,0.08) 8px,
-        rgba(170,170,170,0.08) 9px
-      );
-    }
-
-    .photo-placeholder svg {
-      width: 28px;
-      height: 28px;
-      opacity: 0.35;
-      position: relative;
-    }
-
-    .photo-placeholder span {
-      position: relative;
-    }
-
     .hobby-card-title {
       font-family: 'Playfair Display', serif;
       font-size: 1rem;
@@ -271,6 +225,82 @@
       font-size: 0.88rem;
       color: var(--mgrey);
       line-height: 1.7;
+    }
+
+    /* ── CAROUSEL ── */
+    .carousel {
+      position: relative;
+      border-radius: 2px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+    }
+
+    .carousel-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-track img {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(247, 245, 242, 0.88);
+      border: 1px solid var(--line);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      z-index: 2;
+    }
+
+    .carousel-btn:hover { background: var(--white); }
+    .carousel-btn.prev { left: 8px; }
+    .carousel-btn.next { right: 8px; }
+
+    .carousel-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--charcoal);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+    }
+
+    .carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(247, 245, 242, 0.5);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .carousel-dot.active {
+      background: var(--white);
+      transform: scale(1.25);
     }
 
     /* ── QUICK FACTS ── */
@@ -358,16 +388,45 @@
         <h2 class="section-label">Outside of Work</h2>
         <div class="hobby-block">
 
+          <!-- GOLF CARD -->
           <div class="hobby-card">
-            <img src="Golf.jpg" alt="Golf" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:2px;">
+            <div class="carousel" id="carousel-golf">
+              <div class="carousel-track">
+                <!-- Add or remove <img> tags here for your Golf photos -->
+                <img src="Golf.jpg" alt="Golf">
+                <img src="Golf2.jpg" alt="Golf">
+              </div>
+              <button class="carousel-btn prev" aria-label="Previous">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="carousel-btn next" aria-label="Next">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="carousel-dots"></div>
+            </div>
             <div>
               <h3 class="hobby-card-title">Golf</h3>
               <p class="hobby-card-text">Hard not to get into golf when you study at St. Andrews. It's become a proper part of my routine — a good round has a way of clearing your head that not much else does. There's also something about the patience and focus it demands that I find genuinely useful elsewhere.</p>
             </div>
           </div>
 
+          <!-- HILLWALKING CARD -->
           <div class="hobby-card">
-            <img src="Hiking.jpg" alt="Golf" style="width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:2px;">
+            <div class="carousel" id="carousel-hiking">
+              <div class="carousel-track">
+                <!-- Add or remove <img> tags here for your Hillwalking photos -->
+                <img src="Hiking.jpg" alt="Hillwalking">
+                <img src="Hiking2.jpg" alt="Hillwalking">
+                <img src="Hiking3.jpg" alt="Hillwalking">
+              </div>
+              <button class="carousel-btn prev" aria-label="Previous">
+                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              </button>
+              <button class="carousel-btn next" aria-label="Next">
+                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+              </button>
+              <div class="carousel-dots"></div>
+            </div>
             <div>
               <h3 class="hobby-card-title">Hillwalking</h3>
               <p class="hobby-card-text">I joined St. Andrews Breakaways Hillwalking Society and I'm taking on the role of Trip Secretary next year — planning and organising the society's routes. Scotland has some remarkable hills and getting out into them properly, rather than just looking at them, is something I've come to value a lot.</p>
@@ -386,6 +445,7 @@
   </div>
 
   <script>
+    /* ── NAV ── */
     const btn = document.getElementById('menuBtn');
     const overlay = document.getElementById('navOverlay');
 
@@ -402,6 +462,49 @@
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) closeMenu();
     });
+
+    /* ── CAROUSEL ── */
+    function initCarousel(id) {
+      const carousel = document.getElementById(id);
+      if (!carousel) return;
+
+      const track = carousel.querySelector('.carousel-track');
+      const slides = track.querySelectorAll('img');
+      const dotsContainer = carousel.querySelector('.carousel-dots');
+      const total = slides.length;
+      let current = 0;
+
+      // Hide arrows if only one image
+      if (total <= 1) {
+        carousel.querySelectorAll('.carousel-btn').forEach(b => b.style.display = 'none');
+      }
+
+      // Build dots
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+      });
+
+      // Hide dots if only one image
+      if (total <= 1) dotsContainer.style.display = 'none';
+
+      function goTo(n) {
+        current = (n + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      carousel.querySelector('.prev').addEventListener('click', () => goTo(current - 1));
+      carousel.querySelector('.next').addEventListener('click', () => goTo(current + 1));
+    }
+
+    initCarousel('carousel-golf');
+    initCarousel('carousel-hiking');
   </script>
 
 </body>
