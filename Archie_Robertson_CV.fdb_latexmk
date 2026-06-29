@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1782747807.7209 "/home/archie/Documents/Website/archierobertsons.com/Archie_Robertson_CV.tex" "Archie_Robertson_CV.pdf" "Archie_Robertson_CV" 1782747808.15609 0
+["pdflatex"] 1782748080.89618 "/home/archie/Documents/Website/archierobertsons.com/Archie_Robertson_CV.tex" "Archie_Robertson_CV.pdf" "Archie_Robertson_CV" 1782748081.26471 0
   "/etc/texmf/web2c/texmf.cnf" 1774869999.07636 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/archie/Documents/Website/archierobertsons.com/Archie_Robertson_CV.tex" 1782747807.12777 4680 9888e245bdab8ffdb9efd34b366a7f22 ""
+  "/home/archie/Documents/Website/archierobertsons.com/Archie_Robertson_CV.tex" 1782748080.73223 4736 6c5a124638d2c7ef67b663f838df4487 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx2488.tfm" 1136768653 3584 0181dbc4d429c3ba4e30feba37b5df96 ""
@@ -78,9 +78,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1778774004.60108 5472523 3385632d03104648b518c8e4afd7264e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1774871086 8213393 7c4b583da6f47503c56dba7003cbcc8f ""
-  "Archie_Robertson_CV.aux" 1782747808.10658 843 f24f5e752b6e34dc30c4cff7f226e3f7 "pdflatex"
-  "Archie_Robertson_CV.out" 1782747808.10758 669 95ee43799005c016d0ba47a5571c9820 "pdflatex"
-  "Archie_Robertson_CV.tex" 1782747807.12777 4680 9888e245bdab8ffdb9efd34b366a7f22 ""
+  "Archie_Robertson_CV.aux" 1782748081.22932 843 f24f5e752b6e34dc30c4cff7f226e3f7 "pdflatex"
+  "Archie_Robertson_CV.out" 1782748081.22932 669 95ee43799005c016d0ba47a5571c9820 "pdflatex"
+  "Archie_Robertson_CV.tex" 1782748080.73223 4736 6c5a124638d2c7ef67b663f838df4487 ""
   (generated)
   "Archie_Robertson_CV.aux"
   "Archie_Robertson_CV.log"
