@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.30)  29 JUN 2026 16:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.30)  29 JUN 2026 17:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -342,7 +342,7 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.12pt have occurred.
 
 Package rerunfilecheck Info: File `Archie_Robertson_CV.out' has not changed.
-(rerunfilecheck)             Checksum: 95EE43799005C016D0BA47A5571C9820;669.
+(rerunfilecheck)             Checksum: ACCB9B7CCAF1113BC6C147DD577B079B;717.
  ) 
 Here is how much of TeX's memory you used:
  9973 strings out of 474222
@@ -351,12 +351,12 @@ Here is how much of TeX's memory you used:
  32122 multiletter control sequences out of 15000+600000
  566195 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,79p,318b,434s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,9n,79p,350b,434s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on Archie_Robertson_CV.pdf (1 page, 147504 bytes).
+Output written on Archie_Robertson_CV.pdf (1 page, 147637 bytes).
 PDF statistics:
- 81 PDF objects out of 1000 (max. 8388607)
- 61 compressed objects within 1 object stream
+ 82 PDF objects out of 1000 (max. 8388607)
+ 62 compressed objects within 1 object stream
  8 named destinations out of 1000 (max. 500000)
  49 words of extra memory for PDF output out of 10000 (max. 10000000)
 
