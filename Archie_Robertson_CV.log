@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.30)  29 JUN 2026 14:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.3.30)  29 JUN 2026 15:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -316,19 +316,19 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}]
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 140.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 137.
  (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 140.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 137.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\hfill' on input line 140.
+(hyperref)                removing `\hfill' on input line 137.
 
 
-Underfull \hbox (badness 10000) in alignment at lines 152--152
+Underfull \hbox (badness 10000) in alignment at lines 149--149
 [][]
  []
 
@@ -352,9 +352,9 @@ Here is how much of TeX's memory you used:
  32122 multiletter control sequences out of 15000+600000
  566195 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,79p,318b,434s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,9n,79p,318b,554s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on Archie_Robertson_CV.pdf (2 pages, 148825 bytes).
+Output written on Archie_Robertson_CV.pdf (2 pages, 149004 bytes).
 PDF statistics:
  85 PDF objects out of 1000 (max. 8388607)
  64 compressed objects within 1 object stream
