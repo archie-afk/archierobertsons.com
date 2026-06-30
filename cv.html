@@ -222,6 +222,26 @@
       opacity: 0.5;
     }
 
+    .section-label-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+    .section-label-row .section-label {
+      margin-bottom: 0;
+      flex: 1;
+    }
+    .section-label-link {
+      font-size: 0.78rem;
+      color: var(--mgrey);
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .section-label-link:hover { color: var(--rust); }
+
     /* ── PROFILE bullets ── */
     .profile-list {
       list-style: none;
@@ -360,6 +380,7 @@
       .entry-header { flex-direction: column; gap: 0.1rem; }
       .entry-date { align-self: flex-start; }
       .nav-bar { padding: 1rem 1.2rem; }
+      .section-label-row { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
     }
   </style>
 </head>
@@ -386,8 +407,9 @@
     <h1 class="name">Archie <span>Robertson</span></h1>
     <div class="contact">
       <a href="mailto:archie@robertsons.com">archie@robertsons.com</a>
+      <a href="https://archierobertson.com" target="_blank" rel="noopener">archierobertson.com</a>
       <span>07495 791 527</span>
-      <span>St. Andrews, Scotland</span>
+      <span>Aberdeen, Scotland</span>
     </div>
     <a class="download-btn" href="Archie_Robertson_CV.pdf" download>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -405,11 +427,9 @@
     <section>
       <h2 class="section-label">Profile</h2>
       <ul class="profile-list">
-        <li>Third-year Economics student at St. Andrews with a good grounding in economic theory, statistics, and financial mathematics.</li>
-        <li>Pick up technical tools quickly — have used Python, Java, and LaTeX throughout my degree.</li>
-        <li>Four years of youth coaching and hospitality work every summer have pushed me to work well in a team and stay on top of things when it gets busy.</li>
-        <li>Joining the Breakaways Hillwalking Society committee as Trip Secretary next year.</li>
-        <li>Looking for an internship where I can get proper exposure to finance and put my quantitative skills to use.</li>
+        <li>Third-year Economics student at St. Andrews University with a good grounding in economic theory, statistics, and financial mathematics.</li>
+        <li>I pick up technical tools quickly — having used Python, Java, and LaTeX throughout my degree.</li>
+        <li>Experience working in teams and in high-pressure fast-paced environments.</li>
       </ul>
     </section>
 
@@ -424,9 +444,8 @@
         </div>
         <div class="entry-org">University of St. Andrews, Scotland</div>
         <ul class="entry-list">
-          <li>Modules include Microeconomics, Macroeconomics, Statistics, and Mathematics for Economics.</li>
-          <li>Also completed modules in Object-Oriented Programming and Unix-Based Systems alongside the core economics curriculum.</li>
-          <li>Joining the Breakaways Hillwalking Society committee as Trip Secretary (2025–26), responsible for planning and organising society trips.</li>
+          <li>Modules include: Microeconomics, Macroeconomics, Statistics, Mathematics for Economics.</li>
+          <li>Object-Oriented Programming and Unix-Based Systems alongside the core economics curriculum.</li>
         </ul>
       </div>
 
@@ -442,47 +461,74 @@
       </div>
     </section>
 
+    <!-- PERSONAL PROJECTS -->
+    <section>
+      <div class="section-label-row">
+        <h2 class="section-label">Personal Projects</h2>
+        <a class="section-label-link" href="https://github.com/archie-afk" target="_blank" rel="noopener">github.com/archie-afk</a>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Credit Card Fraud Detector</span>
+          <span class="entry-date">June 2026 – Present</span>
+        </div>
+        <ul class="entry-list">
+          <li>Developed a credit card fraud detection model using XGBoost, trained on a real-world transaction dataset sourced from Kaggle.</li>
+          <li>Handled class imbalance inherent in fraud datasets using techniques such as SMOTE.</li>
+          <li>Optimised model hyperparameters using GridSearchCV, improving classification accuracy.</li>
+        </ul>
+      </div>
+    </section>
+
     <!-- EXPERIENCE -->
     <section>
       <h2 class="section-label">Work Experience</h2>
 
-            <div class="entry">
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Trip Secretary</span>
+          <span class="entry-date">May 2026 – Present</span>
+        </div>
+        <div class="entry-org">Breakaway Hillwalking Society, St Andrews University</div>
+        <ul class="entry-list">
+          <li>Responsible for trip sign ups.</li>
+          <li>Maintain correct and clear trip documentation.</li>
+          <li>Primary lead for hostel communications.</li>
+        </ul>
+      </div>
+
+      <div class="entry">
         <div class="entry-header">
           <span class="entry-title">Kitchen Porter</span>
           <span class="entry-date">Summer 2025</span>
         </div>
         <div class="entry-org">Parx Café, Aberdeen</div>
         <ul class="entry-list">
-          <li>Responsible for early morning dishwashing and food preparation, ensuring the kitchen was fully operational ahead of service.</li>
-          <li>Worked in a compact, high-pressure kitchen environment --- the cafe ran at full capacity most days, requiring focus and efficiency throughout each shift.</li>
-          <li>Developed the ability to work quickly and methodically in a confined space, maintaining standards under sustained demand.</li>
+          <li>Responsible for dishwashing and food preparation.</li>
+          <li>Worked in a compact, high-pressure kitchen environment — the café ran at full capacity most days, requiring focus and efficiency throughout each shift.</li>
         </ul>
       </div>
 
       <div class="entry">
         <div class="entry-header">
           <span class="entry-title">Youth Sports Coach</span>
-          <span class="entry-date">Jun 2020 – Aug 2024</span>
+          <span class="entry-date">Summers Jun 2020 – Aug 2024</span>
         </div>
         <div class="entry-org">Ian Wilson Soccer Coaching (IWSC), Aberdeen</div>
         <ul class="entry-list">
-          <li>Ran coaching sessions for groups of up to 20 children at different skill levels — planned each session in advance and adapted on the day depending on how things were going.</li>
-          <li>Had to communicate clearly with both the children and their parents and manage a group with very different personalities and abilities.</li>
+          <li>Coached football sessions for groups of up to 20 children at different skill levels.</li>
+          <li>Had to communicate clearly with both the children and their parents and manage groups with very different personalities and abilities.</li>
         </ul>
       </div>
 
       <div class="entry">
         <div class="entry-header">
           <span class="entry-title">Kitchen Porter</span>
-          <span class="entry-date">Jun 2021 – Aug 2024</span>
+          <span class="entry-date">Summers Jun 2021 – Aug 2024</span>
         </div>
         <div class="entry-org">Kippie Lodge, Aberdeen</div>
-        <ul class="entry-list">
-          <li>Worked every summer in a busy kitchen — kept things running smoothly during service, helped with prep, and maintained a clean and organised workspace.</li>
-          <li>Good for staying focused and keeping pace when things get hectic.</li>
-        </ul>
       </div>
-
 
     </section>
 
@@ -514,7 +560,7 @@
       </div>
       <div class="cert-row">
         <span class="cert-name">PVG (Protecting Vulnerable Groups) Member — #2107 0159 8561 2431</span>
-        <span class="cert-year">2023 – Present</span>
+        <span class="cert-year">2023</span>
       </div>
     </section>
 
