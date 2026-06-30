@@ -1,11 +1,10 @@
 # Fdb version 4
-["pdflatex"] 1782748849.31607 "/home/archie/Documents/Website/archierobertsons.com/Archie_Robertson_CV.tex" "Archie_Robertson_CV.pdf" "Archie_Robertson_CV" 1782748849.68688 0
+["pdflatex"] 1782749210.53924 "/home/archie/Documents/Website/archierobertsons.com/Archie_Robertson_CV.tex" "Archie_Robertson_CV.pdf" "Archie_Robertson_CV" 1782749210.90972 0
   "/etc/texmf/web2c/texmf.cnf" 1774869999.07636 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/archie/Documents/Website/archierobertsons.com/Archie_Robertson_CV.tex" 1782748849.14912 4785 d5d308892650a059ea752dd497b5ce0c ""
+  "/home/archie/Documents/Website/archierobertsons.com/Archie_Robertson_CV.tex" 1782749210.38405 4816 f927e02856b8823effef6eba7e39979d ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx2488.tfm" 1136768653 3584 0181dbc4d429c3ba4e30feba37b5df96 ""
-  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm0700.tfm" 1136768653 3584 cf973739aac7ab6247f9150296af7954 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm0900.tfm" 1136768653 3584 d3d8ac8b25ca19c0a40b86a5db1e8ccc ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1136768653 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm2488.tfm" 1136768653 3584 406ad7b70d9a41f7833f92b6313150c8 ""
@@ -70,7 +69,6 @@
   "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1636152094 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfbx1000.pfb" 1636152094 145408 43d44302ca7d82d487f511f83e309505 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfbx2488.pfb" 1774870899.58998 135938 299ac3a69892db3b7674a8b2543b0a77 ""
-  "/usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb" 1774870899.77597 154599 ded6d7c21788a8930eadc7fef7518942 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfrm0900.pfb" 1774870899.77897 149037 995a6f1e12c1d647b99b1cf55db78699 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb" 1636152094 138258 6525c253f16cededa14c7fd0da7f67b2 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfti0900.pfb" 1774870899.91896 183673 6df73819bb3e1246a6315a4913a2d331 ""
@@ -78,9 +76,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1707919699 40399 f2c302f7d2af602abb742093540a5834 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1778774004.60108 5472523 3385632d03104648b518c8e4afd7264e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1774871086 8213393 7c4b583da6f47503c56dba7003cbcc8f ""
-  "Archie_Robertson_CV.aux" 1782748849.64911 852 023073427ce44f5f50645514d8856500 "pdflatex"
-  "Archie_Robertson_CV.out" 1782748849.65011 717 accb9b7ccaf1113bc6c147dd577b079b "pdflatex"
-  "Archie_Robertson_CV.tex" 1782748849.14912 4785 d5d308892650a059ea752dd497b5ce0c ""
+  "Archie_Robertson_CV.aux" 1782749210.87404 852 023073427ce44f5f50645514d8856500 "pdflatex"
+  "Archie_Robertson_CV.out" 1782749210.87404 717 accb9b7ccaf1113bc6c147dd577b079b "pdflatex"
+  "Archie_Robertson_CV.tex" 1782749210.38405 4816 f927e02856b8823effef6eba7e39979d ""
   (generated)
   "Archie_Robertson_CV.aux"
   "Archie_Robertson_CV.log"
