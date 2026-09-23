@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.15)  16 SEP 2026 17:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.9.15)  23 SEP 2026 16:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -405,7 +405,7 @@ Here is how much of TeX's memory you used:
 m0900.600pk> </home/archie/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/e
 cbx2488.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y9.pfb>
-Output written on Archie_Robertson_CV.pdf (1 page, 71704 bytes).
+Output written on Archie_Robertson_CV.pdf (1 page, 71718 bytes).
 PDF statistics:
  270 PDF objects out of 1000 (max. 8388607)
  61 compressed objects within 1 object stream
