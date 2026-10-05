@@ -6,18 +6,18 @@
   <title>CV – Archie Robertson</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --rust:    #8B3A2F;
-      --rust-lt: #a8473b;
-      --charcoal:#1A1A1A;
-      --dgrey:   #2D2D2D;
-      --mgrey:   #666666;
-      --lgrey:   #AAAAAA;
-      --bg:      #F7F5F2;
-      --white:   #FFFFFF;
-      --line:    #DDD9D3;
+      --green:     #2D4A3E; 
+      --green-dk:  #1d332a;
+      --charcoal:  #1A1A1A;
+      --dgrey:     #333333;
+      --mgrey:     #666666;
+      --lgrey:     #AAAAAA;
+      --bg:        #FFFFFF;
+      --surface:   #F9F9F9;
+      --line:      #EBEBEB;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -33,543 +33,385 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── HAMBURGER NAV ── */
     .nav-bar {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
-      justify-content: flex-end;
-      padding: 1.2rem 2rem;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2.5rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
     }
 
-    .hamburger {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      padding: 6px;
-      z-index: 200;
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--charcoal);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+    }
+    .nav-logo em { font-style: italic; color: var(--green); font-weight: 400; }
+
+    .nav-links { display: none; }
+    @media (min-width: 769px) {
+      .nav-links { display: flex; gap: 2rem; align-items: center; }
+      .nav-links a { text-decoration: none; color: var(--dgrey); font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.2s; }
+      .nav-links a:hover { color: var(--green); }
+      .hamburger { display: none !important; }
     }
 
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 1.5px;
-      background: var(--charcoal);
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      transform-origin: center;
-    }
-
+    .hamburger { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 6px; z-index: 200; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
     .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    .nav-overlay {
-      position: fixed;
-      inset: 0;
-      background: var(--charcoal);
-      z-index: 150;
+    .nav-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 150; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--charcoal); text-decoration: none; transition: color 0.2s; }
+    .nav-overlay a:hover { color: var(--green); }
+
+    .page-banner {
+      position: relative;
+      width: 100%;
+      height: 35vh; /* Shorter banner */
+      min-height: 250px;
+      margin-top: 70px;
+      /* Using the same consistent banner image */
+      background-image: url('Hiking3.jpg'); 
+      background-size: cover;
+      background-position: center 40%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
+      text-align: center;
     }
 
-    .nav-overlay.open {
-      opacity: 1;
-      pointer-events: all;
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(45, 74, 62, 0.4), rgba(26, 26, 26, 0.6));
     }
 
-    .nav-overlay a {
+    .hero-title {
+      position: relative; z-index: 1;
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 6vw, 3rem);
-      color: var(--bg);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-      padding: 0.4rem 0;
-      position: relative;
-      transition: color 0.2s;
-    }
-
-    .nav-overlay a::after {
-      content: '';
-      position: absolute;
-      bottom: 0.2rem; left: 0;
-      width: 0; height: 1px;
-      background: var(--rust);
-      transition: width 0.3s ease;
-    }
-
-    .nav-overlay a:hover { color: var(--rust); }
-    .nav-overlay a:hover::after { width: 100%; }
-
-    .nav-overlay .nav-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--mgrey);
-      margin-bottom: 1.5rem;
-      font-weight: 400;
-    }
-
-    /* ── LAYOUT ── */
-    .page {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* ── HEADER ── */
-    header {
-      padding: 5rem 0 2.5rem;
-      border-bottom: 1px solid var(--line);
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-size: clamp(3rem, 6vw, 4.5rem);
       font-weight: 700;
-      color: var(--charcoal);
+      color: #ffffff;
       letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 0.8rem;
+      animation: fadeUp 0.8s ease both;
     }
 
-    .name span {
-      color: var(--rust);
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 3rem 2.5rem 6rem;
+    }
+
+    .cv-header {
+      margin-bottom: 3rem;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 2rem;
     }
 
     .contact {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.3rem 1.4rem;
+      justify-content: center;
+      gap: 0.5rem 1.5rem;
       color: var(--mgrey);
-      font-size: 0.85rem;
-      font-weight: 400;
-      margin-bottom: 1.4rem;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
     }
 
-    .contact a {
-      color: var(--mgrey);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .contact a:hover { color: var(--rust); }
+    .contact a { color: var(--mgrey); text-decoration: none; transition: color 0.2s; }
+    .contact a:hover { color: var(--green); }
 
     .download-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--rust);
-      color: var(--white);
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      padding: 0.6rem 1.2rem;
-      border-radius: 2px;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--green); color: var(--bg);
+      text-decoration: none; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.6rem 1.4rem; border-radius: 2px;
       transition: background 0.2s, transform 0.15s;
     }
-    .download-btn:hover {
-      background: var(--rust-lt);
-      transform: translateY(-1px);
-    }
-    .download-btn svg {
-      width: 14px; height: 14px; flex-shrink: 0;
-    }
+    .download-btn:hover { background: var(--green-dk); transform: translateY(-2px); color: var(--bg);}
+    .download-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
 
-    /* ── MAIN ── */
-    main {
-      padding: 0 0 5rem;
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      padding-top: 2.4rem;
-      animation: fadeUp 0.6s ease both;
-    }
-
+    section { padding-top: 2rem; animation: fadeUp 0.6s ease both; }
     section:nth-child(1) { animation-delay: 0.05s; }
     section:nth-child(2) { animation-delay: 0.10s; }
     section:nth-child(3) { animation-delay: 0.15s; }
-    section:nth-child(4) { animation-delay: 0.20s; }
-    section:nth-child(5) { animation-delay: 0.25s; }
 
     .section-label {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--charcoal);
-      margin-bottom: 0.3rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 500;
+      margin-bottom: 1rem;
       display: flex;
       align-items: center;
       gap: 0.8rem;
     }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--rust);
-      opacity: 0.5;
-    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
-    .section-label-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 0.8rem;
-      margin-bottom: 0.3rem;
-    }
-    .section-label-row .section-label {
-      margin-bottom: 0;
-      flex: 1;
-    }
-    .section-label-link {
-      font-size: 0.78rem;
-      color: var(--mgrey);
-      text-decoration: none;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .section-label-link:hover { color: var(--rust); }
+    .section-label-row { display: flex; align-items: baseline; justify-content: space-between; gap: 0.8rem; margin-bottom: 1rem; }
+    .section-label-row .section-label { margin-bottom: 0; flex: 1; }
+    .section-label-link { font-size: 0.78rem; color: var(--mgrey); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+    .section-label-link:hover { color: var(--green); }
 
-    /* ── PROFILE bullets ── */
-    .profile-list {
-      list-style: none;
-      padding: 0.5rem 0 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    .profile-list li {
-      padding-left: 1.1rem;
-      position: relative;
-      color: var(--dgrey);
-      font-size: 0.92rem;
-    }
-    .profile-list li::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: var(--rust);
-      font-weight: 500;
-    }
+    .profile-list { list-style: none; padding: 0.5rem 0 0; display: flex; flex-direction: column; gap: 0.4rem; }
+    .profile-list li { padding-left: 1.1rem; position: relative; color: var(--dgrey); font-size: 0.95rem; }
+    .profile-list li::before { content: '–'; position: absolute; left: 0; color: var(--green); font-weight: 500; }
 
-    /* ── ENTRY BLOCKS ── */
-    .entry {
-      padding: 1rem 0 0.2rem;
-      border-bottom: 1px solid var(--line);
-    }
+    .entry { padding: 1.5rem 0 0.5rem; border-bottom: 1px solid var(--line); }
     .entry:last-child { border-bottom: none; }
 
-    .entry-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+    .entry-header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+    .entry-title { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.2rem; color: var(--charcoal); }
+    .entry-date { font-size: 0.85rem; color: var(--mgrey); white-space: nowrap; flex-shrink: 0; font-weight: 500;}
+    .entry-org { font-size: 0.9rem; color: var(--green); margin: 0.2rem 0 0.8rem; font-weight: 500; }
 
-    .entry-title {
-      font-weight: 500;
-      font-size: 0.95rem;
-      color: var(--charcoal);
-    }
+    .entry-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.6rem; }
+    .entry-list li { padding-left: 1.1rem; position: relative; font-size: 0.95rem; color: var(--dgrey); line-height: 1.6; }
+    .entry-list li::before { content: '·'; position: absolute; left: 0; color: var(--lgrey); font-weight: 700; font-size: 1.2rem; line-height: 1.2;}
 
-    .entry-date {
-      font-size: 0.8rem;
-      color: var(--lgrey);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .entry-org {
-      font-size: 0.82rem;
-      color: var(--rust);
-      font-style: italic;
-      margin: 0.1rem 0 0.5rem;
-    }
-
-    .entry-list {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      margin-bottom: 0.6rem;
-    }
-    .entry-list li {
-      padding-left: 1.1rem;
-      position: relative;
-      font-size: 0.88rem;
-      color: var(--mgrey);
-      line-height: 1.6;
-    }
-    .entry-list li::before {
-      content: '·';
-      position: absolute;
-      left: 0;
-      color: var(--lgrey);
-      font-weight: 700;
-    }
-
-    /* ── SKILLS TABLE ── */
-    .skills-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 0.6rem;
-    }
+    .skills-table { width: 100%; border-collapse: collapse; margin-top: 0.6rem; }
     .skills-table tr { border-bottom: 1px solid var(--line); }
     .skills-table tr:last-child { border-bottom: none; }
-    .skills-table td {
-      padding: 0.55rem 0;
-      font-size: 0.88rem;
-      vertical-align: top;
-    }
-    .skills-table td:first-child {
-      font-weight: 500;
-      color: var(--charcoal);
-      width: 130px;
-      padding-right: 1.5rem;
-    }
-    .skills-table td:last-child {
-      color: var(--mgrey);
-    }
+    .skills-table td { padding: 0.8rem 0; font-size: 0.95rem; vertical-align: top; }
+    .skills-table td:first-child { font-weight: 500; color: var(--charcoal); width: 150px; padding-right: 1.5rem; }
+    .skills-table td:last-child { color: var(--dgrey); }
 
-    /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--line);
-      padding: 1.5rem 0;
-      font-size: 0.78rem;
-      color: var(--lgrey);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 2.5rem; border-top: 1px solid var(--line); flex-wrap: wrap; gap: 1rem; background: var(--bg);
     }
+    .footer-left { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--charcoal); }
+    .footer-left em { font-style: italic; color: var(--green); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mgrey); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--green); }
 
-    /* ── ANIMATION ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 520px) {
-      .page { padding: 0 1.2rem; }
-      header { padding: 4rem 0 1.8rem; }
-      .entry-header { flex-direction: column; gap: 0.1rem; }
+      .page { padding: 2rem 1.5rem 4rem; }
+      .entry-header { flex-direction: column; gap: 0.2rem; }
       .entry-date { align-self: flex-start; }
-      .nav-bar { padding: 1rem 1.2rem; }
       .section-label-row { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
+      footer { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- FIXED NAVIGATION -->
   <nav class="nav-bar">
+    <a class="nav-logo" href="index.html">Archie <em>Robertson</em></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="cv.html">CV</a>
+      <a href="mailto:archie@robertsons.com">Contact</a>
+    </div>
     <button class="hamburger" id="menuBtn" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
   <div class="nav-overlay" id="navOverlay">
-    <span class="nav-label">Navigate</span>
+    <span style="font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mgrey);margin-bottom:1rem;">Menu</span>
     <a href="index.html" onclick="closeMenu()">Home</a>
-    <a href="cv.html" onclick="closeMenu()">CV</a>
     <a href="about.html" onclick="closeMenu()">About</a>
+    <a href="cv.html" onclick="closeMenu()">CV</a>
     <a href="mailto:archie@robertsons.com" onclick="closeMenu()">Contact</a>
   </div>
 
-<div class="page">
-
-  <header>
-    <h1 class="name">Archie <span>Robertson</span></h1>
-    <div class="contact">
-      <a href="mailto:archie@robertsons.com">archie@robertsons.com</a>
-      <a href="https://archierobertson.com" target="_blank" rel="noopener">archierobertson.com</a>
-      <span>07495 791 527</span>
-      <span>Aberdeen, Scotland</span>
-    </div>
-    <a class="download-btn" href="Archie_Robertson_CV.pdf" download>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-        <polyline points="7 10 12 15 17 10"/>
-        <line x1="12" y1="15" x2="12" y2="3"/>
-      </svg>
-      Download CV
-    </a>
+  <!-- PHOTOGRAPHIC BANNER HERO -->
+  <header class="page-banner">
+    <div class="hero-overlay"></div>
+    <h1 class="hero-title">Curriculum Vitae</h1>
   </header>
 
-  <main>
+  <div class="page">
+    <div class="cv-header">
+      <div class="contact">
+        <a href="mailto:archie@robertsons.com">archie@robertsons.com</a>
+        <a href="https://archierobertson.com" target="_blank" rel="noopener">archierobertson.com</a>
+        <span>07495 791 527</span>
+        <span>Aberdeen, Scotland</span>
+      </div>
+      <a class="download-btn" href="Archie_Robertson_CV.pdf" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </a>
+    </div>
 
-    <!-- PROFILE -->
-    <section>
-      <h2 class="section-label">Profile</h2>
-      <ul class="profile-list">
-        <li>Fourth-year Economics student at St. Andrews University with a good grounding in economic theory, statistics, and financial mathematics.</li>
-        <li>I pick up technical tools quickly — having used Python, Java, and LaTeX throughout my degree.</li>
-        <li>Experience working in teams and in high-pressure fast-paced environments.</li>
-      </ul>
-    </section>
-
-    <!-- EDUCATION -->
-    <section>
-      <h2 class="section-label">Education</h2>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">BSc Economics</span>
-          <span class="entry-date">Sep 2022 – Present (Expected Jun 2027)</span>
-        </div>
-        <div class="entry-org">University of St. Andrews, Scotland</div>
-        <ul class="entry-list">
-          <li>Modules include: Microeconomics, Macroeconomics, Statistics, Mathematics for Economics.</li>
-          <li>Object-Oriented Programming and Unix-Based Systems alongside the core economics curriculum.</li>
+    <main>
+      <!-- PROFILE -->
+      <section>
+        <h2 class="section-label">Profile</h2>
+        <ul class="profile-list">
+          <li>Fourth-year Economics student at St. Andrews University with a good grounding in economic theory, statistics, and financial mathematics.</li>
+          <li>I pick up technical tools quickly — having used Python, Java, and LaTeX throughout my degree.</li>
+          <li>Experience working in teams and in high-pressure fast-paced environments.</li>
         </ul>
-      </div>
+      </section>
 
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Scottish Highers</span>
-          <span class="entry-date">2021</span>
+      <!-- EDUCATION -->
+      <section>
+        <h2 class="section-label">Education</h2>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">BSc Economics</span>
+            <span class="entry-date">Sep 2022 – Present</span>
+          </div>
+          <div class="entry-org">University of St. Andrews, Scotland</div>
+          <ul class="entry-list">
+            <li>Modules include: Microeconomics, Macroeconomics, Statistics, Mathematics for Economics.</li>
+            <li>Object-Oriented Programming and Unix-Based Systems alongside the core economics curriculum.</li>
+          </ul>
         </div>
-        <div class="entry-org">Cults Academy, Aberdeen</div>
-        <ul class="entry-list">
-          <li>Mathematics: A &ensp; Physics: A &ensp; Computing: A &ensp; Physical Education: A &ensp; Chemistry: B</li>
-        </ul>
-      </div>
-    </section>
 
-    <!-- PERSONAL PROJECTS -->
-    <section>
-      <div class="section-label-row">
-        <h2 class="section-label">Personal Projects</h2>
-        <a class="section-label-link" href="https://github.com/archie-afk" target="_blank" rel="noopener">github.com/archie-afk</a>
-      </div>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Credit Card Fraud Detector</span>
-          <span class="entry-date">June 2026 – July 2026</span>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Scottish Highers</span>
+            <span class="entry-date">2021</span>
+          </div>
+          <div class="entry-org">Cults Academy, Aberdeen</div>
+          <ul class="entry-list">
+            <li>Mathematics: A &ensp; Physics: A &ensp; Computing: A &ensp; Physical Education: A &ensp; Chemistry: B</li>
+          </ul>
         </div>
-        <ul class="entry-list">
-          <li>Developed a credit card fraud detection model using XGBoost, trained on a real-world transaction dataset sourced from Kaggle.</li>
-          <li>Handled class imbalance inherent in fraud datasets using techniques such as SMOTE.</li>
-          <li>Optimised model hyperparameters using GridSearchCV, improving classification accuracy.</li>
-        </ul>
-      </div>
-    </section>
+      </section>
 
-    <!-- EXPERIENCE -->
-    <section>
-      <h2 class="section-label">Work Experience</h2>
-
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Internship</span>
-          <span class="entry-date">Aug 2026</span>
+      <!-- PERSONAL PROJECTS -->
+      <section>
+        <div class="section-label-row">
+          <h2 class="section-label">Personal Projects</h2>
+          <a class="section-label-link" href="https://github.com/archie-afk" target="_blank" rel="noopener">github.com/archie-afk ↗</a>
         </div>
-        <div class="entry-org">Kellas Midstream, Aberdeen</div>
-        <ul class="entry-list">
-          <li>Developed proficency with Power BI.</li>
-          <li>Gained insight into economic planing.</li>
-          <li>Built a Power BI template to automate economic data ingestion, reducing manual input time.</li>
-          <li>Presented my work to the Economic planning team.</li>
-        </ul>
-      </div>
 
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Internship</span>
-          <span class="entry-date">July 2026</span>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Credit Card Fraud Detector</span>
+            <span class="entry-date">June 2026 – July 2026</span>
+          </div>
+          <ul class="entry-list">
+            <li>Developed a credit card fraud detection model using XGBoost, trained on a real-world transaction dataset sourced from Kaggle.</li>
+            <li>Handled class imbalance inherent in fraud datasets using techniques such as SMOTE.</li>
+            <li>Optimised model hyperparameters using GridSearchCV, improving classification accuracy.</li>
+          </ul>
         </div>
-        <div class="entry-org">Maven Capital, Glasgow</div>
-        <ul class="entry-list">
-          <li>Reviewed FCA Consumer Duty filings for the compliance team and gained exposure to the firm's private equity investment lifecycle.</li>
-        </ul>
-      </div>
+      </section>
 
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Trip Secretary</span>
-          <span class="entry-date">May 2026 – Present</span>
+      <!-- EXPERIENCE -->
+      <section>
+        <h2 class="section-label">Work Experience</h2>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Internship</span>
+            <span class="entry-date">Aug 2026</span>
+          </div>
+          <div class="entry-org">Kellas Midstream, Aberdeen</div>
+          <ul class="entry-list">
+            <li>Developed proficency with Power BI.</li>
+            <li>Gained insight into economic planing.</li>
+            <li>Built a Power BI template to automate economic data ingestion, reducing manual input time.</li>
+            <li>Presented my work to the Economic planning team.</li>
+          </ul>
         </div>
-        <div class="entry-org">Breakaway Hillwalking Society, St Andrews University</div>
-        <ul class="entry-list">
-          <li>Responsible for trip sign-ups, related documentation and primary lead for hostel communication.</li>
-        </ul>
-      </div>
 
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Kitchen Porter</span>
-          <span class="entry-date">Summer 2025</span>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Internship</span>
+            <span class="entry-date">July 2026</span>
+          </div>
+          <div class="entry-org">Maven Capital, Glasgow</div>
+          <ul class="entry-list">
+            <li>Reviewed FCA Consumer Duty filings for the compliance team and gained exposure to the firm's private equity investment lifecycle.</li>
+          </ul>
         </div>
-        <div class="entry-org">Parx Café, Aberdeen</div>
-        <ul class="entry-list">
-          <li>Working in a high-pressure kitchen environment, carrying out dishwashing and food preparation duties.</li>
-        </ul>
-      </div>
 
-      <div class="entry">
-        <div class="entry-header">
-          <span class="entry-title">Youth Sports Coach</span>
-          <span class="entry-date">Summers Jun 2020 – Aug 2024</span>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Trip Secretary</span>
+            <span class="entry-date">May 2026 – Present</span>
+          </div>
+          <div class="entry-org">Breakaway Hillwalking Society, St Andrews University</div>
+          <ul class="entry-list">
+            <li>Responsible for trip sign-ups, related documentation and primary lead for hostel communication.</li>
+          </ul>
         </div>
-        <div class="entry-org">Ian Wilson Soccer Coaching (IWSC), Aberdeen</div>
-        <ul class="entry-list">
-          <li>Coaching football sessions for groups of 20 children at different skill levels.</li>
-        </ul>
-      </div>
 
-    </section>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Kitchen Porter</span>
+            <span class="entry-date">Summer 2025</span>
+          </div>
+          <div class="entry-org">Parx Café, Aberdeen</div>
+          <ul class="entry-list">
+            <li>Working in a high-pressure kitchen environment, carrying out dishwashing and food preparation duties.</li>
+          </ul>
+        </div>
 
-    <!-- SKILLS -->
-    <section>
-      <h2 class="section-label">Skills</h2>
-      <table class="skills-table">
-        <tr>
-          <td>Programming</td>
-          <td>Python, Java, LaTeX, Unix / Bash</td>
-        </tr>
-        <tr>
-          <td>Quantitative</td>
-          <td>Statistics, data analysis, financial mathematics</td>
-        </tr>
-        <tr>
-          <td>Interests</td>
-          <td>Economics, hillwalking, golf, computer science</td>
-        </tr>
-      </table>
-    </section>
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Youth Sports Coach</span>
+            <span class="entry-date">Summers Jun 2020 – Aug 2024</span>
+          </div>
+          <div class="entry-org">Ian Wilson Soccer Coaching (IWSC), Aberdeen</div>
+          <ul class="entry-list">
+            <li>Coaching football sessions for groups of 20 children at different skill levels.</li>
+          </ul>
+        </div>
+      </section>
 
-  </main>
+      <!-- SKILLS -->
+      <section>
+        <h2 class="section-label">Skills</h2>
+        <table class="skills-table">
+          <tr>
+            <td>Programming</td>
+            <td>Python, Java, LaTeX, Unix / Bash</td>
+          </tr>
+          <tr>
+            <td>Quantitative</td>
+            <td>Statistics, data analysis, financial mathematics</td>
+          </tr>
+          <tr>
+            <td>Interests</td>
+            <td>Economics, hillwalking, golf, computer science</td>
+          </tr>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="footer-left">Archie <em>Robertson</em> &copy; 2026</div>
+    <div class="footer-links">
+      <a href="mailto:archie@robertsons.com">Email</a>
+      <a href="https://github.com/archie-afk" target="_blank">GitHub</a>
+      <a href="cv.html">CV</a>
+    </div>
+  </footer>
 
   <script>
     const btn = document.getElementById('menuBtn');
     const overlay = document.getElementById('navOverlay');
-
-    btn.addEventListener('click', () => {
-      const isOpen = overlay.classList.toggle('open');
-      btn.classList.toggle('open', isOpen);
-    });
-
-    function closeMenu() {
-      overlay.classList.remove('open');
-      btn.classList.remove('open');
-    }
-
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeMenu();
-    });
+    function closeMenu() { overlay.classList.remove('open'); btn.classList.remove('open'); }
+    btn.addEventListener('click', () => { const isOpen = overlay.classList.toggle('open'); btn.classList.toggle('open', isOpen); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
   </script>
-
 </body>
 </html>

@@ -6,18 +6,18 @@
   <title>About Me – Archie Robertson</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --rust:    #8B3A2F;
-      --rust-lt: #a8473b;
-      --charcoal:#1A1A1A;
-      --dgrey:   #2D2D2D;
-      --mgrey:   #666666;
-      --lgrey:   #AAAAAA;
-      --bg:      #F7F5F2;
-      --white:   #FFFFFF;
-      --line:    #DDD9D3;
+      --green:     #2D4A3E; 
+      --green-dk:  #1d332a;
+      --charcoal:  #1A1A1A;
+      --dgrey:     #333333;
+      --mgrey:     #666666;
+      --lgrey:     #AAAAAA;
+      --bg:        #FFFFFF;
+      --surface:   #F9F9F9;
+      --line:      #EBEBEB;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -28,356 +28,186 @@
       color: var(--dgrey);
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── HAMBURGER NAV ── */
     .nav-bar {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
-      justify-content: flex-end;
-      padding: 1.2rem 2rem;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2.5rem;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
     }
 
-    .hamburger {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      padding: 6px;
-      z-index: 200;
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--charcoal);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+    }
+    .nav-logo em { font-style: italic; color: var(--green); font-weight: 400; }
+
+    .nav-links { display: none; }
+    @media (min-width: 769px) {
+      .nav-links { display: flex; gap: 2rem; align-items: center; }
+      .nav-links a { text-decoration: none; color: var(--dgrey); font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; transition: color 0.2s; }
+      .nav-links a:hover { color: var(--green); }
+      .hamburger { display: none !important; }
     }
 
-    .hamburger span {
-      display: block;
-      width: 24px;
-      height: 1.5px;
-      background: var(--charcoal);
-      transition: transform 0.3s ease, opacity 0.3s ease;
-      transform-origin: center;
-    }
-
+    .hamburger { background: none; border: none; cursor: pointer; display: flex; flex-direction: column; gap: 5px; padding: 6px; z-index: 200; }
+    .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--charcoal); transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center; }
     .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
     .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-    .nav-overlay {
-      position: fixed;
-      inset: 0;
-      background: var(--charcoal);
-      z-index: 150;
+    .nav-overlay { position: fixed; inset: 0; background: var(--bg); z-index: 150; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+    .nav-overlay a { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--charcoal); text-decoration: none; transition: color 0.2s; }
+    .nav-overlay a:hover { color: var(--green); }
+
+    .page-banner {
+      position: relative;
+      width: 100%;
+      height: 40vh; /* Shorter banner than the homepage */
+      min-height: 300px;
+      margin-top: 70px;
+      /* Using the same consistent banner image to build a cohesive theme */
+      background-image: url('Hiking3.jpg'); 
+      background-size: cover;
+      background-position: center 40%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 0.5rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
+      text-align: center;
     }
 
-    .nav-overlay.open {
-      opacity: 1;
-      pointer-events: all;
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(45, 74, 62, 0.3), rgba(26, 26, 26, 0.6));
     }
 
-    .nav-overlay a {
+    .hero-title {
+      position: relative; z-index: 1;
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 6vw, 3rem);
-      color: var(--bg);
-      text-decoration: none;
-      letter-spacing: -0.01em;
-      padding: 0.4rem 0;
-      position: relative;
-      transition: color 0.2s;
-    }
-
-    .nav-overlay a::after {
-      content: '';
-      position: absolute;
-      bottom: 0.2rem; left: 0;
-      width: 0; height: 1px;
-      background: var(--rust);
-      transition: width 0.3s ease;
-    }
-
-    .nav-overlay a:hover { color: var(--rust); }
-    .nav-overlay a:hover::after { width: 100%; }
-
-    .nav-overlay .nav-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.75rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--mgrey);
-      margin-bottom: 1.5rem;
-      font-weight: 400;
-    }
-
-    /* ── LAYOUT ── */
-    .page {
-      max-width: 780px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* ── HEADER ── */
-    header {
-      padding: 5rem 0 2.5rem;
-      border-bottom: 1px solid var(--line);
-      animation: fadeUp 0.6s ease both;
-    }
-
-    .name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-size: clamp(3rem, 6vw, 4.5rem);
       font-weight: 700;
-      color: var(--charcoal);
+      color: #ffffff;
       letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 0.5rem;
+      animation: fadeUp 0.8s ease both;
     }
 
-    .name span { color: var(--rust); }
-
-    .page-subtitle {
-      font-size: 0.85rem;
-      color: var(--lgrey);
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 6rem;
     }
-
-    /* ── MAIN ── */
-    main {
-      padding: 0 0 5rem;
-    }
-
-    /* ── SECTIONS ── */
-    section {
-      padding-top: 2.4rem;
-      animation: fadeUp 0.6s ease both;
-    }
-
-    section:nth-child(1) { animation-delay: 0.05s; }
-    section:nth-child(2) { animation-delay: 0.10s; }
-    section:nth-child(3) { animation-delay: 0.15s; }
-    section:nth-child(4) { animation-delay: 0.20s; }
 
     .section-label {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--charcoal);
-      margin-bottom: 0.3rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       gap: 0.8rem;
     }
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--rust);
-      opacity: 0.5;
-    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
-    /* ── INTRO BLOCK ── */
-    .intro-text {
-      font-size: 0.95rem;
-      color: var(--dgrey);
-      line-height: 1.8;
-      padding-top: 0.6rem;
-    }
+    .intro-text { font-size: 1.05rem; color: var(--dgrey); line-height: 1.8; margin-bottom: 4rem;}
+    .intro-text p + p { margin-top: 1.2rem; }
 
-    .intro-text p + p {
-      margin-top: 0.8rem;
-    }
+    .hobby-block { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .hobby-card { display: flex; flex-direction: column; gap: 1rem; }
+    .hobby-card-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--charcoal); }
+    .hobby-card-text { font-size: 0.95rem; color: var(--mgrey); line-height: 1.8; }
 
-    /* ── PHOTO + TEXT ROW ── */
-    .hobby-block {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.4rem;
-      padding-top: 0.8rem;
-    }
-
-    .hobby-card {
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .hobby-card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--charcoal);
-    }
-
-    .hobby-card-text {
-      font-size: 0.88rem;
-      color: var(--mgrey);
-      line-height: 1.7;
-    }
-
-    /* ── CAROUSEL ── */
     .carousel {
-      position: relative;
-      border-radius: 2px;
-      overflow: hidden;
-      aspect-ratio: 4 / 3;
-      width: 350px
+      position: relative; border-radius: 4px; overflow: hidden;
+      aspect-ratio: 4 / 3; width: 100%; border: 1px solid var(--line);
     }
-
-    .carousel-track {
-      display: flex;
-      height: 100%;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .carousel-track img {
-      min-width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      flex-shrink: 0;
-    }
+    .carousel-track { display: flex; height: 100%; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .carousel-track img { min-width: 100%; height: 100%; object-fit: cover; display: block; flex-shrink: 0; }
 
     .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(247, 245, 242, 0.88);
-      border: 1px solid var(--line);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-      z-index: 2;
+      position: absolute; top: 50%; transform: translateY(-50%); width: 32px; height: 32px;
+      border-radius: 50%; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--line);
+      cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2;
     }
+    .carousel-btn:hover { background: #fff; border-color: var(--green); }
+    .carousel-btn.prev { left: 10px; } .carousel-btn.next { right: 10px; }
+    .carousel-btn svg { width: 14px; height: 14px; stroke: var(--charcoal); stroke-width: 2; fill: none; transition: stroke 0.2s;}
+    .carousel-btn:hover svg { stroke: var(--green); }
 
-    .carousel-btn:hover { background: var(--white); }
-    .carousel-btn.prev { left: 8px; }
-    .carousel-btn.next { right: 8px; }
+    .carousel-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; }
+    .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.5); border: none; cursor: pointer; padding: 0; }
+    .carousel-dot.active { background: #fff; transform: scale(1.3); }
 
-    .carousel-btn svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--charcoal);
-      stroke-width: 2;
-      fill: none;
-    }
-
-    .carousel-dots {
-      position: absolute;
-      bottom: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 5px;
-    }
-
-    .carousel-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(247, 245, 242, 0.5);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: background 0.2s, transform 0.2s;
-    }
-
-    .carousel-dot.active {
-      background: var(--white);
-      transform: scale(1.25);
-    }
-
-    /* ── QUICK FACTS ── */
-    .facts-list {
-      list-style: none;
-      padding: 0.5rem 0 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-    .facts-list li {
-      padding-left: 1.1rem;
-      position: relative;
-      color: var(--dgrey);
-      font-size: 0.92rem;
-    }
-    .facts-list li::before {
-      content: '–';
-      position: absolute;
-      left: 0;
-      color: var(--rust);
-      font-weight: 500;
-    }
-
-    /* ── FOOTER ── */
     footer {
-      border-top: 1px solid var(--line);
-      padding: 1.5rem 0;
-      font-size: 0.78rem;
-      color: var(--lgrey);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 2.5rem; border-top: 1px solid var(--line); flex-wrap: wrap; gap: 1rem; background: var(--bg);
     }
+    .footer-left { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--charcoal); }
+    .footer-left em { font-style: italic; color: var(--green); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mgrey); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--green); }
 
-    /* ── ANIMATION ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 520px) {
-      .page { padding: 0 1.2rem; }
-      header { padding: 4rem 0 1.8rem; }
-      .nav-bar { padding: 1rem 1.2rem; }
+    @media (max-width: 768px) {
       .hobby-block { grid-template-columns: 1fr; }
+      .page { padding: 3rem 1.5rem 4rem; }
+      footer { flex-direction: column; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- FIXED NAVIGATION -->
   <nav class="nav-bar">
+    <a class="nav-logo" href="index.html">Archie <em>Robertson</em></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="cv.html">CV</a>
+      <a href="mailto:archie@robertsons.com">Contact</a>
+    </div>
     <button class="hamburger" id="menuBtn" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
   <div class="nav-overlay" id="navOverlay">
-    <span class="nav-label">Navigate</span>
+    <span style="font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mgrey);margin-bottom:1rem;">Menu</span>
     <a href="index.html" onclick="closeMenu()">Home</a>
+    <a href="about.html" onclick="closeMenu()">About</a>
     <a href="cv.html" onclick="closeMenu()">CV</a>
-    <a href="about.html" onclick="closeMenu()">About Me</a>
-    <a href="mailto:archie@example.com" onclick="closeMenu()">Contact</a>
+    <a href="mailto:archie@robertsons.com" onclick="closeMenu()">Contact</a>
   </div>
 
+  <!-- PHOTOGRAPHIC BANNER HERO -->
+  <header class="page-banner">
+    <div class="hero-overlay"></div>
+    <h1 class="hero-title">About Me</h1>
+  </header>
+
   <div class="page">
-
-    <header>
-      <h1 class="name">About <span>Me</span></h1>
-      <p class="page-subtitle">Beyond the CV</p>
-    </header>
-
     <main>
-
       <!-- INTRO -->
       <section>
-        <h2 class="section-label">Who I Am</h2>
+        <h2 class="section-label">Background</h2>
         <div class="intro-text">
           <p>I'm Archie — a fourth-year Economics student at St. Andrews with a genuine interest in finance and a habit of spending weekends either on a golf course or halfway up a hill. I grew up in Aberdeen, which probably explains both.</p>
           <p>Academically I'm drawn to the quantitative side of economics — statistics, financial mathematics, the kind of problems where the answer isn't obvious until you work through it properly. Outside of that, I try to stay active, stay curious, and make the most of being in one of the best parts of Scotland.</p>
@@ -386,23 +216,17 @@
 
       <!-- HOBBIES -->
       <section>
-        <h2 class="section-label">Outside of Work</h2>
+        <h2 class="section-label">Life Outside Work</h2>
         <div class="hobby-block">
 
           <!-- GOLF CARD -->
           <div class="hobby-card">
             <div class="carousel" id="carousel-golf">
               <div class="carousel-track">
-                <!-- Add or remove <img> tags here for your Golf photos -->
-                <img src="Golf.jpg" alt="Golf">
-                <img src="Golf2.png" alt="Golf">
+                <img src="Golf2.jpg" alt="Golf">
               </div>
-              <button class="carousel-btn prev" aria-label="Previous">
-                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              </button>
-              <button class="carousel-btn next" aria-label="Next">
-                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-              </button>
+              <button class="carousel-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button class="carousel-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
               <div class="carousel-dots"></div>
             </div>
             <div>
@@ -415,22 +239,15 @@
           <div class="hobby-card">
             <div class="carousel" id="carousel-hiking">
               <div class="carousel-track">
-                <!-- Add or remove <img> tags here for your Hillwalking photos -->
-                <img src="Hiking.jpg" alt="Hillwalking">
-                <img src="Hiking2.jpg" alt="Hillwalking">
-                <img src="Hiking3.JPG" alt="Hillwalking">
+                <img src="Hiking3.jpg" alt="Hillwalking">
               </div>
-              <button class="carousel-btn prev" aria-label="Previous">
-                <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
-              </button>
-              <button class="carousel-btn next" aria-label="Next">
-                <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
-              </button>
+              <button class="carousel-btn prev" aria-label="Previous"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+              <button class="carousel-btn next" aria-label="Next"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></button>
               <div class="carousel-dots"></div>
             </div>
             <div>
               <h3 class="hobby-card-title">Hillwalking</h3>
-              <p class="hobby-card-text">I joined St. Andrews Breakaway Hillwalking Society and I'm taking on the role of Trip Secretary next year. I really enjoy being apart of Breakaway, as I am able to meet loads of intresting people and see so much of Scotland.</p>
+              <p class="hobby-card-text">I joined St. Andrews Breakaway Hillwalking Society and I'm taking on the role of Trip Secretary next year. I really enjoy being apart of Breakaway, as I am able to meet loads of interesting people and see so much of Scotland.</p>
             </div>
           </div>
 
@@ -438,75 +255,54 @@
       </section>
 
     </main>
-
-    <footer>
-      Archie Robertson &mdash; St. Andrews, Scotland
-    </footer>
-
   </div>
 
+  <footer>
+    <div class="footer-left">Archie <em>Robertson</em> &copy; 2026</div>
+    <div class="footer-links">
+      <a href="mailto:archie@robertsons.com">Email</a>
+      <a href="https://github.com/archie-afk" target="_blank">GitHub</a>
+      <a href="cv.html">CV</a>
+    </div>
+  </footer>
+
   <script>
-    /* ── NAV ── */
     const btn = document.getElementById('menuBtn');
     const overlay = document.getElementById('navOverlay');
+    function closeMenu() { overlay.classList.remove('open'); btn.classList.remove('open'); }
+    btn.addEventListener('click', () => { const isOpen = overlay.classList.toggle('open'); btn.classList.toggle('open', isOpen); });
 
-    function closeMenu() {
-      overlay.classList.remove('open');
-      btn.classList.remove('open');
-    }
-
-    btn.addEventListener('click', () => {
-      const isOpen = overlay.classList.toggle('open');
-      btn.classList.toggle('open', isOpen);
-    });
-
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) closeMenu();
-    });
-
-    /* ── CAROUSEL ── */
     function initCarousel(id) {
       const carousel = document.getElementById(id);
       if (!carousel) return;
-
       const track = carousel.querySelector('.carousel-track');
       const slides = track.querySelectorAll('img');
       const dotsContainer = carousel.querySelector('.carousel-dots');
       const total = slides.length;
       let current = 0;
 
-      // Hide arrows if only one image
-      if (total <= 1) {
-        carousel.querySelectorAll('.carousel-btn').forEach(b => b.style.display = 'none');
-      }
+      if (total <= 1) { carousel.querySelectorAll('.carousel-btn').forEach(b => b.style.display = 'none'); }
 
-      // Build dots
       slides.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
         dot.addEventListener('click', () => goTo(i));
         dotsContainer.appendChild(dot);
       });
 
-      // Hide dots if only one image
       if (total <= 1) dotsContainer.style.display = 'none';
 
       function goTo(n) {
         current = (n + total) % total;
         track.style.transform = `translateX(-${current * 100}%)`;
-        dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
-          d.classList.toggle('active', i === current);
-        });
+        dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === current));
       }
 
       carousel.querySelector('.prev').addEventListener('click', () => goTo(current - 1));
       carousel.querySelector('.next').addEventListener('click', () => goTo(current + 1));
     }
-
     initCarousel('carousel-golf');
     initCarousel('carousel-hiking');
   </script>
-
 </body>
 </html>
